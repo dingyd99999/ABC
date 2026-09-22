@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!--
+    核心逻辑行为测试（纯 .NET 8 控制台，Linux/macOS/Windows 均可运行）。
+    通过 Compile Include 直接链接主工程的 Model 源码，不复制文件、无双源风险。
+    运行：cd LogicTests && dotnet run
+  -->
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>Minesweeper.Tests</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="../Model/**/*.cs" Link="Model/%(RecursiveDir)%(Filename)%(Extension)" />
+  </ItemGroup>
+</Project>

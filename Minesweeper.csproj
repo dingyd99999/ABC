@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>Minesweeper</RootNamespace>
+    <AssemblyName>Win95Minesweeper</AssemblyName>
+    <!-- 允许在非 Windows 平台上做编译级验证：dotnet build -p:EnableWindowsTargeting=true -->
+    <EnableWindowsTargeting Condition="'$(EnableWindowsTargeting)' == ''">false</EnableWindowsTargeting>
+  </PropertyGroup>
+
+  <!--
+    LogicTests 是独立可运行的控制台工程，嵌套在本工程目录内。
+    SDK 工程默认通配编入 **/*.cs 会把它的 Program.cs（含 Main）一并编译，
+    造成 CS0017 双入口点——必须显式排除。
+  -->
+  <ItemGroup>
+    <Compile Remove="LogicTests/**/*.cs" />
+  </ItemGroup>
+
+</Project>
